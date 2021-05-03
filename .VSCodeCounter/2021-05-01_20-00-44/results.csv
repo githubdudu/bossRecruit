@@ -1,0 +1,26 @@
+"filename", "language", "JavaScript", "CSS", "Less", "comment", "blank", "total"
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\api\ajax.js", "JavaScript", 18, 0, 0, 2, 4, 24
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\api\index.js", "JavaScript", 20, 0, 0, 3, 12, 35
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\components\logo\Logo.jsx", "JavaScript", 10, 0, 0, 0, 2, 12
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\components\logo\logo.css", "CSS", 0, 7, 0, 0, 1, 8
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\components\logo\logo.less", "Less", 0, 0, 7, 0, 1, 8
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\components\profile-heads\Profile-heads.jsx", "JavaScript", 44, 0, 0, 3, 7, 54
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\Page404\Page404.jsx", "JavaScript", 15, 0, 0, 0, 2, 17
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\boss-info\Boss-info.jsx", "JavaScript", 124, 0, 0, 13, 22, 159
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\candi-info\Candi-info.jsx", "JavaScript", 100, 0, 0, 6, 20, 126
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\chat\Chat.jsx", "JavaScript", 219, 0, 0, 57, 15, 291
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\chat\chat.css", "CSS", 0, 12, 0, 0, 1, 13
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\home-explore\Explore.jsx", "JavaScript", 101, 0, 0, 11, 17, 129
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\home-messages\Messages.jsx", "JavaScript", 107, 0, 0, 22, 16, 145
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\home-personal\Personal.jsx", "JavaScript", 89, 0, 0, 5, 13, 107
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\home\Home.jsx", "JavaScript", 103, 0, 0, 3, 15, 121
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\login\Login.jsx", "JavaScript", 106, 0, 0, 4, 21, 131
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\main\Main.jsx", "JavaScript", 87, 0, 0, 16, 12, 115
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\register\Register.jsx", "JavaScript", 157, 0, 0, 9, 25, 191
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\containers\register\radio.css", "CSS", 0, 10, 0, 1, 2, 13
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\index.js", "JavaScript", 20, 0, 0, 0, 4, 24
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\redux\actions.js", "JavaScript", 172, 0, 0, 66, 24, 262
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\redux\reducers.js", "JavaScript", 122, 0, 0, 95, 19, 236
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\redux\store.js", "JavaScript", 9, 0, 0, 0, 3, 12
+"c:\Users\dudu\Desktop\React 项目实践\bossRecruit\src\test\socketIO.js", "JavaScript", 0, 0, 0, 0, 2, 2
+"Total", "-", 1623, 29, 7, 316, 260, 2235
