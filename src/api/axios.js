@@ -2,9 +2,7 @@ import axios from "axios";
 const BASE_URL ="http://localhost:4000"
 
 export default function ajax(url = "", data = {}, type = "GET") {
-  let axios_Config = {baseURL: BASE_URL,withCredentials: true};
   if (type === "GET") {
-
     // data: {username: xxx, userPW: xxx}
     // dataStr: username=xxx&userPW=xxx
     let dataStr = "";
@@ -16,8 +14,8 @@ export default function ajax(url = "", data = {}, type = "GET") {
       dataStr = dataStr.substring(0, dataStr.lastIndexOf("&"));
       url = url + "?" + dataStr;
     }
-    return axios.get(url, axios_Config);
+    return axios.get(url);
   } else {
-    return axios.post(url, data, axios_Config);
+    return axios.post(url, data);
   }
 }
