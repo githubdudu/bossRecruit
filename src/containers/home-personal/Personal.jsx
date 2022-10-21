@@ -1,9 +1,14 @@
-import React, { Component } from "react";
+import React, { useState, useEffect , Component } from "react";
 import { connect } from "react-redux";
 import { NavBar, Result, List, WhiteSpace, Button, Modal } from "antd-mobile";
 import Cookies from "js-cookie";
+import HeadPhoto from "../../components/HeadPhoto/HeadPhoto";
 
 import { changeStateLogout } from "../../redux/actions";
+
+function Personal({headPhoto, logout }) {
+
+}
 
 class Personal extends Component {
   constructor(props) {
@@ -30,8 +35,9 @@ class Personal extends Component {
   };
 
   myImg = (src) => {
-    let i = src ?? "头像1";
-    // console.log(i);
+    // let i = src ?? "头像1";
+    let i = "头像1";
+    console.log(i);
     return (
       <img
         src={require(`../../assets/heads/${i}.png`).default}
@@ -100,7 +106,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapStateToDispatch = {
-  changeStateLogout,
+  logout: changeStateLogout,
 };
 
 export default connect(mapStateToProps, mapStateToDispatch)(Personal);
