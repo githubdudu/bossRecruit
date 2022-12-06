@@ -1,11 +1,12 @@
 import React from 'react'
 import logo from './logo.png';
-import "./logo.less";
+import LogoContainer from './LogoContainer';
+import Img from './Img';
 
 export default function Logo() {
     return (
-        <div className="home-logo">
-            <img  src={logo} alt="App Logo" />
-        </div>
+        <LogoContainer>
+            <Img src={logo} alt="App Logo" />
+        </LogoContainer>
     )
 }
