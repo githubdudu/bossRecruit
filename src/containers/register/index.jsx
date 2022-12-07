@@ -16,7 +16,7 @@ import { Redirect } from "react-router-dom";
 
 import "./radio.css";
 
-import Logo from "../../components/logo/Logo";
+import Logo from "../../components/Logo";
 import { requestRegister, sendError } from "../../redux/actions";
 
 function Register({ errMsg, redirectUrl, history, submitForm, onFormError }) {

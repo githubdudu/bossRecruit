@@ -1,14 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-const DEFAULT_PHOTO = "头像1";
+import Img from './Img';
 
-function HeadPhoto({ photoName = DEFAULT_PHOTO}) {
+function HeadPhoto({ photoName }) {
+  const DEFAULT_PHOTO = "头像1";
+  photoName = photoName? photoName : DEFAULT_PHOTO;
   return (
-    <img
+    <Img
       src={require(`../../assets/heads/${photoName}.png`).default}
       className="spe am-icon am-icon-md"
       alt="headPhoto"
-      style={{ width: 60, height: 60 }}
     />
   )
 }

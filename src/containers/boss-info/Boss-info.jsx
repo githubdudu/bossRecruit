@@ -14,7 +14,7 @@ import { Redirect } from "react-router";
 
 import { requestUpdateUserInfo } from "../../redux/actions";
 
-import ProfileHeads from "../../components/profile-heads/Profile-heads";
+import ProfileHeads from "../../components/ProfileHeads";
 // |参数		|是否必选 |类型     |说明
 // |headPhoto  |Y       |string   |头像名称
 

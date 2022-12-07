@@ -12,7 +12,7 @@ import {
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import Logo from "../../components/logo/Logo";
+import Logo from "../../components/Logo";
 import { requestLogin, sendError } from "../../redux/actions";
 
 function Login({ errMsg, redirectUrl, history, submitForm, onFormError }) {
