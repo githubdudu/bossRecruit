@@ -14,7 +14,7 @@ import { Redirect } from "react-router";
 
 import { requestUpdateUserInfo } from "../../redux/actions";
 
-import ProfileHeads from "../../components/ProfileHeads";
+import ProfileHeads from "Components/ProfileHeads";
 
 function CandiInfo({ updateUserInfo, userType, redirectUrl }) {
   const [headPhoto, setHeadPhoto] = useState("");

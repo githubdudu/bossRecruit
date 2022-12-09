@@ -8,7 +8,6 @@ function HeadPhoto({ photoName }) {
   return (
     <Img
       src={require(`../../assets/heads/${photoName}.png`).default}
-      className="spe am-icon am-icon-md"
       alt="headPhoto"
     />
   )

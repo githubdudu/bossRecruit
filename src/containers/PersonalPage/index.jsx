@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { NavBar, Result, List, WhiteSpace } from "antd-mobile";
-import HeadPhoto from "../../components/HeadPhoto";
+import HeadPhoto from "Components/HeadPhoto";
 import LogOutButton from "./LogOutButton";
 
 
@@ -24,7 +24,7 @@ function Personal({ headPhoto,
         message={company}
       />
 
-      <List renderHeader={() => "相关信息"} className="my-list">
+      <List renderHeader={() => "相关信息"} >
         <List.Item multipleLine>
           {userType && (
             <List.Item.Brief>用户类型: {userType} </List.Item.Brief>

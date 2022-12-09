@@ -1,128 +1,109 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { NavBar, Card, WhiteSpace, WingBlank } from "antd-mobile";
-import {withRouter} from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { WingBlank, Card, WhiteSpace } from "antd-mobile";
+import WithNavBar from "Components/WithNavBar";
+import { withRouter } from 'react-router-dom';
 
 import { asyncGetUserLists } from "../../redux/actions";
 
-class Explore extends Component {
+import { connect } from "react-redux";
 
-
-  componentDidMount() {
-    // console.log("Didmount and get data, axios");
-    // define userTypeNeeded: Boss => Candidate, Candidata => Boss
-    let userTypeNeeded = null;
-    switch (this.props.userType) {
+function ExplorePage({ exploreLists, userType, asyncGetUserLists, history }) {
+  const [exploreType, setExploreType] = useState(null);
+  useEffect(() => {
+    switch (userType) {
       case "Boss":
-        userTypeNeeded = "Candidate";
+        setExploreType("Candidate");
         break;
       case "Candidate":
-        userTypeNeeded = "Boss";
+        setExploreType("Boss");
         break;
       default:
-        userTypeNeeded = null;
+        setExploreType(null);
         break;
     }
-    // console.log(userTypeNeeded);
-    // a async function to fetch UserLists
-    if (userTypeNeeded) {
-      this.props.asyncGetUserLists(userTypeNeeded);
-      // console.log("axios end", this.props.userLists);
+  }, [userType])
+
+  useEffect(() => {
+    if (exploreType) {
+      // a async function to fetch UserLists
+      asyncGetUserLists(exploreType);
     }
+  }, [exploreType])
+
+  // without the data, no render
+  if (!exploreLists) {
+    return null;
   }
 
-  render() {
+  const renderExploreLists = exploreLists.map(({
+    _id,
+    username,
+    headPhoto,
+    description,
+    company,
+    salary,
+    position,
+  }) => {
 
-    // without the data, no render
-    if (!this.props.userLists) {
-      return null;
+    headPhoto = headPhoto ?? "头像1";
+    // use try in case the Photo module error break the app
+    let photo = null;
+    try {
+      photo = require(`../../assets/heads/${headPhoto}.png`).default;
+    } catch (e) {
     }
 
-    let renderLists = this.props.userLists.map((list, index) => {
-      let {
-        _id,
-        username,
-        headPhoto,
-        description,
-        company,
-        salary,
-        position,
-      } = list;
-
-      // headPhoto =  "头像1"
-      headPhoto = headPhoto?? "头像1";
-      let photo = null;
-
-      // use try in case the Photo module error break the app
-      try {
-        photo = require(`../../assets/heads/${headPhoto}.png`).default;
-      } catch (ex) {
-        photo = null;
-        console.log("Fail load headPhoto");
-      }
-
-      // remember, these are all inside a function of map
-      return (
-        <div key={username}>
-          <WhiteSpace size="sm" />
-          <Card onClick={()=>this.props.history.push(`/chat/${_id}`)}>
-            <Card.Header thumb={photo} extra={<span>{username}</span>} />
-            <Card.Body>
-              <div>职位：{position || "无"}</div>
-              <div>公司：{company || "无"}</div>
-              <div>月薪：{salary || "无"}</div>
-              <div>描述：{description || "无"}</div>
-            </Card.Body>
-          </Card>
-          <WhiteSpace size="sm" />
-        </div>
-      );
-    });
-
-    // didn't use a state in case the value is not sync
-    let userTypeNeeded = null;
-    switch (this.props.userType) {
-      case "Boss":
-        userTypeNeeded = "Candidate";
-        break;
-      case "Candidate":
-        userTypeNeeded = "Boss";
-        break;
-      default:
-        userTypeNeeded = null;
-        break;
-    }
-
-
-    // a NavBar, a renderlists,
+    // remember, these are all inside a function of map
     return (
-      <div>
-        <NavBar
-          type="primary"
-          style={{
-            position: "fixed",
-            width: "100%",
-            top: 0,
-            zIndex: 5,
-          }}
-        >
-          {userTypeNeeded || "正在载入"} 列表
-        </NavBar>
-        <WingBlank size="lg" style={{
-          marginTop: "50px",
-        }}>
-          {renderLists}
-        </WingBlank>
+      <div key={username}>
+        <WhiteSpace size="sm" />
+        <Card onClick={() => history.push(`/chat/${_id}`)}>
+          <Card.Header thumb={photo} extra={<span>{username}</span>} />
+          <Card.Body>
+            <div>职位：{position || "无"}</div>
+            <div>公司：{company || "无"}</div>
+            <div>月薪：{salary || "无"}</div>
+            <div>描述：{description || "无"}</div>
+          </Card.Body>
+        </Card>
+        <WhiteSpace size="sm" />
       </div>
     );
-  }
+  });
+
+  return (
+    <>
+      <WithNavBar title={`${exploreType || "正在载入"} 列表`}>
+        <WingBlank size="lg" >
+          {renderExploreLists}
+        </WingBlank>
+      </WithNavBar>
+    </>
+  );
+}
+
+ExplorePage.propTypes = {
+  exploreLists: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.arrayOf(PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
+      headPhoto: PropTypes.string,
+      description: PropTypes.string,
+      company: PropTypes.string,
+      salary: PropTypes.string,
+      position: PropTypes.string,
+    })).isRequired]),
+  userType: PropTypes.string,
+  asyncGetUserLists: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-  userLists: state.userLists,
+  exploreLists: state.userLists,
   userType: state.userData.userType,
 });
 
 const mapDispatchToProps = { asyncGetUserLists };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Explore));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ExplorePage));

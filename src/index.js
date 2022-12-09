@@ -4,9 +4,9 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import store from "./redux/store";
-import Login from "./containers/login/Login";
+import Login from "./containers/Login";
 import Main from "./containers/main/Main";
-import Register from "./containers/register/Register";
+import Register from "./containers/Register";
 
 
 ReactDOM.render(

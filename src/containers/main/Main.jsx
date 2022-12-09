@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 
 import BossInfo from "../boss-info/Boss-info";
 import CandiInfo from "../candi-info/Candi-info";
-import Home from "../home/Home";
+import Home from "../HomePage";
 import Chat from '../chat/Chat';
 import Page404 from '../Page404/Page404';
 
