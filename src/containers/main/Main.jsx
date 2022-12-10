@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 import BossInfo from "../boss-info/Boss-info";
 import CandiInfo from "../candi-info/Candi-info";
 import Home from "../HomePage";
-import Chat from '../chat/Chat';
+import Chat from '../Chat';
 import Page404 from '../Page404/Page404';
 
 import { fetchUserData } from "../../redux/actions";

@@ -11,7 +11,7 @@ const makeSelectUnreadEach = () =>
     (id, chatMsgs) => {
       const map = new Map();
       for (let i = 0; i < chatMsgs.length; i++) {
-        if (chatMsgs[i].to == id && !chatMsgs.isRead) {
+        if (chatMsgs[i].to === id && !chatMsgs.isRead) {
           if (map.has(chatMsgs[i].chat_id)) {
             map.set(chatMsgs[i].chat_id, map.get(chatMsgs[i].chat_id));
           } else {

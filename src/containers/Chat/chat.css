@@ -5,9 +5,3 @@
   padding-right: 15px;
   text-align: right;
 }
-
-.chat-input{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}

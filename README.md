@@ -8,13 +8,14 @@
 ### run by
     npm start
 
-1. Add alias. 
+1. Add Webpack alias. 
+2. Add Reselect.
    TODO: remove errInfo, errMsg, onFormError, use page state instead for Login and Register
-   TODO: set width / Media query for different devices.
+
    TODO: do not use redirectUrl to control
    TODO: Split the redux file
    TODO: Use Redux Saga
    TODO: add eslint
    TODO: add Unit Text
    TODO: add AuthRoute
-   TODO: Add mockserver
+   TODO: Add mockserver Nock

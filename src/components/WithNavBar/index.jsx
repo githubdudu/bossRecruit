@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 const Container = styled('div')`
   margin-top: 45px;
 `;
-function WithNavBar({ title="Loading", children }) {
+function WithNavBar({ title="Loading", children, ...props }) {
   return (
     <>
-      <NavBar>
+      <NavBar {...props}>
         {title}
       </NavBar>
       <Container>

@@ -255,7 +255,7 @@ export const reqReadMessage = ({from,to}) => (dispatch) => {
     } else {
       // 0: success
       console.log("sync_readMessage", {from, to});
-      dispatch(sync_readMessage({from, to}));
+      // dispatch(sync_readMessage({from, to}));
     }
   });
 };
