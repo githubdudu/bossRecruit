@@ -51,7 +51,7 @@ function Login({ errMsg, redirectUrl, history, submitForm, onFormError }) {
 
   if (redirectUrl) {
     Toast.success("Login Success!", 2);
-    return <Redirect to={redirectUrl} />;
+    history.push("/home");
   }
 
   return (

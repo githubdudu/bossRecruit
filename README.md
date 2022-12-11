@@ -10,6 +10,8 @@
 
 1. Add Webpack alias. 
 2. Add Reselect.
+3. Add AuthRoute. Redesigned route.
+
    TODO: remove errInfo, errMsg, onFormError, use page state instead for Login and Register
 
    TODO: do not use redirectUrl to control
@@ -17,5 +19,4 @@
    TODO: Use Redux Saga
    TODO: add eslint
    TODO: add Unit Text
-   TODO: add AuthRoute
    TODO: Add mockserver Nock

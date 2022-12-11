@@ -63,7 +63,7 @@ function Register({ errMsg, redirectUrl, history, submitForm, onFormError }) {
   // if success, redirectUrl = "/" , according to API
   if (redirectUrl) {
     Toast.success("Register Success!", 2);
-    return <Redirect to={redirectUrl} />;
+    history.push("/home");
   }
 
   return (
