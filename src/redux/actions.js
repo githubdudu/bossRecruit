@@ -31,7 +31,6 @@ export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
 export const GET_USER_LISTS = "GET_USER_LISTS"; // sync action
 export const RECEIVE_MSG_LIST = "RECEIVE_MSG_LIST";
 export const RECEIVE_MSG = "RECEIVE_MSG";
-export const READ_MESSAGE = 'READ_MESSAGE'
 
 // used in reqMessageList
 function initIO(dispatch,userid) {
@@ -110,12 +109,6 @@ const receiveMsg = (data) => {
   };
 };
 
-const sync_readMessage = (data) => {
-  return {
-    type: READ_MESSAGE,
-    messages: data,
-  };
-}
 // async actions
 // Register
 export const requestRegister = (state) => (dispatch) => {
@@ -254,7 +247,6 @@ export const reqReadMessage = ({from,to}) => (dispatch) => {
     } else {
       // 0: success
       console.log("sync_readMessage", {from, to});
-      // dispatch(sync_readMessage({from, to}));
     }
   });
 };

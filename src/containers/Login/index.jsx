@@ -13,13 +13,14 @@ import { connect } from "react-redux";
 import Cookies from "js-cookie";
 
 import Logo from "Components/Logo";
-import { requestLogin, sendError } from "../../redux/actions";
+import { requestLogin } from "../../redux/actions";
 
-function Login({ errMsg, history, submitForm, onFormError }) {
+function Login({ errMsg, history, submitForm }) {
   const [forms, setForms] = useState({
     username: "",
     userPW: "",
   });
+  const [errInfo, setErrInfo] = useState(null);
 
   // handle inputs
   function handleInputChange(stateName, stateValue) {
@@ -30,16 +31,14 @@ function Login({ errMsg, history, submitForm, onFormError }) {
 
   // submit the login data
   function login() {
-    let errInfo = null;
     if (!forms.username) {
-      errInfo = "Blank username";
+      Toast.fail("Blank username", 1);
+      setErrInfo("Blank username");
     } else if (!forms.userPW) {
-      errInfo = "Blank password";
-    }
-    if (errInfo) {
-      Toast.fail(errInfo, 1);
-      onFormError(errInfo);
+      Toast.fail("Blank password", 1);
+      setErrInfo("Blank password");
     } else {
+      setErrInfo(null);
       submitForm(forms); // handle to axios
     }
   };
@@ -89,11 +88,9 @@ function Login({ errMsg, history, submitForm, onFormError }) {
             </InputItem>
 
             {/* if there is an errMsg  */}
-            {errMsg && (
-              <NoticeBar icon={null}>
-                {errMsg}
-              </NoticeBar>
-            )}
+            {errMsg && <NoticeBar icon={null}>{errMsg}</NoticeBar>}
+            {errInfo && <NoticeBar icon={null}>{errInfo}</NoticeBar>}
+            
             <WhiteSpace size="md" />
 
             <Button type="primary" onClick={login}>
@@ -113,7 +110,6 @@ function Login({ errMsg, history, submitForm, onFormError }) {
 Login.propTypes = {
   errMsg: PropTypes.string,
   submitForm: PropTypes.func.isRequired,
-  onFormError: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
@@ -122,7 +118,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   submitForm: requestLogin,
-  onFormError: sendError,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

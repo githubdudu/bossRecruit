@@ -12,10 +12,10 @@
 2. Add Reselect.
 3. Add AuthRoute. Redesigned route.
 4. Remove redirectUrl in state.
-   TODO: remove errInfo, errMsg, onFormError, use page state instead for Login and Register
+5. Remove onFormError and related action(sync_readMessage), do not send component error state to Redux state.
 
    TODO: Split the redux file
    TODO: Use Redux Saga
-   TODO: add eslint
+   TODO: add eslint config
    TODO: add Unit Text
    TODO: Add mockserver Nock

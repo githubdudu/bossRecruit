@@ -7,7 +7,6 @@ import {
   GET_USER_LISTS,
   RECEIVE_MSG_LIST,
   RECEIVE_MSG,
-  READ_MESSAGE,
 } from "./actions";
 
 // const INIT_USER_DATA = {
@@ -160,19 +159,6 @@ const messages = (state = initMessages, action) => {
         users: state.users,
         chatMsgs: [...state.chatMsgs, action.messages],
         unReadCount: 0, //actually not used in web, just calculate it by chatMsgs on the client side
-      };
-    case READ_MESSAGE:
-      // received from and to
-      const { from, to } = action.messages;
-      return {
-        users: state.users,
-        chatMsgs: state.chatMsgs.map((Msg) => {
-          if (Msg.from === from && Msg.to === to&& !Msg.isRead) {
-            return {...Msg,isRead:true};
-          }else{
-            return Msg
-          }
-        }),
       };
     default:
       return state;

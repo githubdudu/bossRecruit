@@ -27,7 +27,7 @@ function AuthRoute({
       console.log('发送ajax请求获取user')
       getUserData();
     }
-  }, [userid, _id])
+  }, [userid, _id, getUserData])
 
   // 没有登录 跳转登录
   if (!userid) {

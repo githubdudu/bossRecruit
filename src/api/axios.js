@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL ="http://localhost:4000"
+// const BASE_URL ="http://localhost:4000"
 
 export default function ajax(url = "", data = {}, type = "GET") {
   if (type === "GET") {

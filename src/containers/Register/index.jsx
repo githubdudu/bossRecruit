@@ -17,15 +17,16 @@ import Cookies from "js-cookie";
 import "./radio.css";
 
 import Logo from "Components/Logo";
-import { requestRegister, sendError } from "../../redux/actions";
+import { requestRegister } from "../../redux/actions";
 
-function Register({ errMsg, history, submitForm, onFormError }) {
+function Register({ errMsg, history, submitForm }) {
   const [forms, setForms] = useState({
     username: "",
     userPW: "",
     userPWAgain: "",
     userType: "Boss",
   });
+  const [errInfo, setErrInfo] = useState(null);
 
   // handle inputs
   function handleInputChange(stateName, stateValue) {
@@ -36,21 +37,20 @@ function Register({ errMsg, history, submitForm, onFormError }) {
 
   // submit the register data
   function register() {
-    let errInfo = null;
     if (!forms.username) {
-      errInfo = "Blank username";
+      Toast.fail("Blank username", 1);
+      setErrInfo("Blank username");
     } else if (!forms.userPW) {
-      errInfo = "Blank password";
+      Toast.fail("Blank password", 1);
+      setErrInfo("Blank password");
     } else if (!forms.userPWAgain) {
-      errInfo = "Blank password confirm";
+      Toast.fail("Blank password confirm", 1);
+      setErrInfo("Blank password confirm");
     } else if (forms.userPW !== forms.userPWAgain) {
-      errInfo = "Passwords are not same";
-    }
-
-    if(errInfo) {
-      Toast.fail(errInfo, 1);
-      onFormError(errInfo);
+      Toast.fail("Passwords are not same", 1);
+      setErrInfo("Passwords are not same");
     } else {
+      setErrInfo(null);
       submitForm(forms); // handle to axios
     }
   };
@@ -142,6 +142,7 @@ function Register({ errMsg, history, submitForm, onFormError }) {
 
             {/* if there is an errMsg  */}
             {errMsg && <NoticeBar icon={null}>{errMsg}</NoticeBar>}
+            {errInfo && <NoticeBar icon={null}>{errInfo}</NoticeBar>}
 
             <WhiteSpace size="md" />
             <Button type="primary" onClick={register}>
@@ -161,7 +162,6 @@ function Register({ errMsg, history, submitForm, onFormError }) {
 Register.propTypes = {
   errMsg: PropTypes.string,
   submitForm: PropTypes.func.isRequired,
-  onFormError: PropTypes.func.isRequired,
 }
 
 // only map two of userData, not all in video
@@ -171,7 +171,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   submitForm: requestRegister,
-  onFormError: sendError,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
