@@ -12,14 +12,14 @@ import {
   Toast,
 } from "antd-mobile";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import "./radio.css";
 
 import Logo from "Components/Logo";
 import { requestRegister, sendError } from "../../redux/actions";
 
-function Register({ errMsg, redirectUrl, history, submitForm, onFormError }) {
+function Register({ errMsg, history, submitForm, onFormError }) {
   const [forms, setForms] = useState({
     username: "",
     userPW: "",
@@ -60,8 +60,7 @@ function Register({ errMsg, redirectUrl, history, submitForm, onFormError }) {
     history.replace("/login");
   };
 
-  // if success, redirectUrl = "/" , according to API
-  if (redirectUrl) {
+  if (Cookies.get("userid")) {
     Toast.success("Register Success!", 2);
     history.push("/home");
   }
@@ -161,7 +160,6 @@ function Register({ errMsg, redirectUrl, history, submitForm, onFormError }) {
 
 Register.propTypes = {
   errMsg: PropTypes.string,
-  redirectUrl: PropTypes.string,
   submitForm: PropTypes.func.isRequired,
   onFormError: PropTypes.func.isRequired,
 }
@@ -169,7 +167,6 @@ Register.propTypes = {
 // only map two of userData, not all in video
 const mapStateToProps = (state) => ({
   errMsg: state.userData.errMsg,
-  redirectUrl: state.userData.redirectUrl,
 });
 
 const mapDispatchToProps = {

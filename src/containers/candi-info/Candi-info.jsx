@@ -16,7 +16,7 @@ import { requestUpdateUserInfo } from "../../redux/actions";
 
 import ProfileHeads from "Components/ProfileHeads";
 
-function CandiInfo({ updateUserInfo, userType, redirectUrl }) {
+function CandiInfo({ updateUserInfo, userType }) {
   const [headPhoto, setHeadPhoto] = useState("");
   const [position, setPosition] = useState("");
   const [description, setDescription] = useState("");
@@ -32,10 +32,6 @@ function CandiInfo({ updateUserInfo, userType, redirectUrl }) {
 
   if (userType === "Boss") {
     return <Redirect to="/bossinfo" />;
-  }
-
-  if (redirectUrl && redirectUrl === "/home") {
-    return <Redirect to="/home" />;
   }
 
   return (
@@ -82,13 +78,11 @@ function CandiInfo({ updateUserInfo, userType, redirectUrl }) {
 
 CandiInfo.propTypes = {
   userType: PropTypes.string.isRequired,
-  redirectUrl: PropTypes.string,
   updateUserInfo: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   userType: state.userData.userType,
-  redirectUrl: state.userData.redirectUrl,
 });
 
 const mapDispatchToProps = { updateUserInfo: requestUpdateUserInfo };

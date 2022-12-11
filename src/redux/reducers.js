@@ -14,7 +14,6 @@ import {
 //   username: "",
 //   userType: "",
 //   errMsg: "",
-//   redirectUrl: "",
 //   _id,
 
 //   headPhoto,
@@ -30,7 +29,6 @@ userData: {
     username:""  // info after login   String
     userType:""  // info after login  String Boss or Candidate
     errMsg:""  // error message
-    redirectUrl: ""  // after login, set a url; when not null, to another page
     _id;
     headPhoto,
     position,
@@ -56,7 +54,6 @@ userData: {
         username: "" => username
         userType: "" => userType
         errMsg:   "" => null
-        redirectUrl: "" => "/"
 
         headPhoto,
     }
@@ -106,20 +103,6 @@ function errMsg(state = "", action) {
   }
 }
 
-function redirectUrl(state = "", action) {
-  switch (action.type) {
-    case CHANGE_STATE_LOGIN:
-      return "/";
-    case CHANGE_STATE_LOGOUT:
-      return null;
-    case UPDATE_USER_INFO:
-      return "/home";
-    case SEND_ERROR:
-    default:
-      return state;
-  }
-}
-
 const updateFiveInfo = (name) => (state = "", action) => {
   switch (action.type) {
     case CHANGE_STATE_LOGIN:
@@ -136,44 +119,11 @@ const updateFiveInfo = (name) => (state = "", action) => {
   }
 };
 
-/* old version reducer*/
-// function userData(state = INIT_USER_DATA, action) {
-//   switch (action.type) {
-//     case CHANGE_STATE_LOGIN:
-//       return {
-//         username: action.userData.username,
-//         userType: action.userData.isUserBoss ? "Boss" : "Candidate",
-//         errMsg: "",
-//         // redirectUrl: getRedirectUrl(
-//         //   action.userData.isUserBoss,
-//         //   action.userData.headPhoto
-//         // ),
-//         redirectUrl: "/",
-//       };
-
-//     case CHANGE_STATE_LOGOUT:
-//       // reset means inital all to null
-//       return { ...INIT_USER_DATA, errMsg: action.msg };
-
-//     case SEND_ERROR:
-//       return { ...state, errMsg: action.msg };
-
-//     case UPDATE_USER_INFO:
-//       let { isUserBoss, ...info } = action.userInfo;
-//       let userType = isUserBoss ? "Boss" : "Candidate";
-//       return { ...info, userType };
-
-//     default:
-//       return state;
-//   }
-// }
-
 const userData = combineReducers({
   username: loginChange("username"),
   userType: loginChange("userType"),
   _id: loginChange("_id"),
   errMsg,
-  redirectUrl,
   headPhoto: updateFiveInfo("headPhoto"),
   position: updateFiveInfo("position"),
   description: updateFiveInfo("description"),

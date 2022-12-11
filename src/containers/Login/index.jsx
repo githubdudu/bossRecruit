@@ -10,12 +10,12 @@ import {
   Toast,
 } from "antd-mobile";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import Logo from "Components/Logo";
 import { requestLogin, sendError } from "../../redux/actions";
 
-function Login({ errMsg, redirectUrl, history, submitForm, onFormError }) {
+function Login({ errMsg, history, submitForm, onFormError }) {
   const [forms, setForms] = useState({
     username: "",
     userPW: "",
@@ -49,7 +49,7 @@ function Login({ errMsg, redirectUrl, history, submitForm, onFormError }) {
     history.push("/register");
   };
 
-  if (redirectUrl) {
+  if (Cookies.get("userid")) {
     Toast.success("Login Success!", 2);
     history.push("/home");
   }
@@ -112,14 +112,12 @@ function Login({ errMsg, redirectUrl, history, submitForm, onFormError }) {
 
 Login.propTypes = {
   errMsg: PropTypes.string,
-  redirectUrl: PropTypes.string,
   submitForm: PropTypes.func.isRequired,
   onFormError: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   errMsg: state.userData.errMsg,
-  redirectUrl: state.userData.redirectUrl,
 });
 
 const mapDispatchToProps = {

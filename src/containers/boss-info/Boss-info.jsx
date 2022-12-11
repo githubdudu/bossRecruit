@@ -23,7 +23,7 @@ import ProfileHeads from "Components/ProfileHeads";
 // |salary    |N       |string   |月薪
 // |introductions   |N       |string   |介绍
 
-function BossInfo({ updateUserInfo, userType, redirectUrl }) {
+function BossInfo({ updateUserInfo, userType }) {
   const [headPhoto, setHeadPhoto] = useState("");
   const [userInfo, setUserInfo] = useState({
     company: "",
@@ -49,9 +49,6 @@ function BossInfo({ updateUserInfo, userType, redirectUrl }) {
 
   if (userType === "Candidate") {
     return <Redirect to="/candiinfo" />;
-  }
-  if (redirectUrl && redirectUrl === "/home") {
-    return <Redirect to="/home" />;
   }
 
   return (
@@ -122,13 +119,11 @@ function BossInfo({ updateUserInfo, userType, redirectUrl }) {
 
 BossInfo.propTypes = {
   userType: PropTypes.string.isRequired,
-  redirectUrl: PropTypes.string,
   updateUserInfo: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   userType: state.userData.userType,
-  redirectUrl: state.userData.redirectUrl,
 });
 
 const mapDispatchToProps = { updateUserInfo: requestUpdateUserInfo };
