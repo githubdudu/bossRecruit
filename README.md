@@ -13,6 +13,7 @@
 3. Add AuthRoute. Redesigned route.
 4. Remove redirectUrl in state.
 5. Remove onFormError and related action(sync_readMessage), do not send component error state to Redux state.
+6. Update all npm libraries.
 
    TODO: Split the redux file
    TODO: Use Redux Saga

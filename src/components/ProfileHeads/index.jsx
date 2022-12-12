@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { List, Grid } from "antd-mobile";
-// import icon from '../../assets/heads/头像1.png';
 
 export default function ProfileHeads({ iconSelected = null, setHeader }) {
 

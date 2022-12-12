@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import {createRoot} from "react-dom/client";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -11,7 +11,8 @@ import AuthRoute from 'Containers/AuthRoute';
 import Chat from 'Containers//Chat';
 import Page404 from 'Containers//Page404/Page404';
 
-ReactDOM.render(
+const root = createRoot(document.getElementById("root"));
+root.render(
   <Provider store={store}>
     <HashRouter>
       <Switch>
@@ -23,5 +24,4 @@ ReactDOM.render(
       </Switch>
     </HashRouter>
   </Provider>,
-  document.getElementById("root")
 );
