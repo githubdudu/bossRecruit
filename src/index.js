@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import store from './redux/store';
@@ -20,6 +20,7 @@ root.render(
         <Route path="/register" component={Register}></Route>
         <AuthRoute path="/home" component={HomePage}></AuthRoute>
         <AuthRoute path="/chat/:userid" component={Chat}></AuthRoute>
+        <Redirect exact path="/" to="/home"></Redirect>
         <Route component={Page404}></Route>
       </Switch>
     </HashRouter>
