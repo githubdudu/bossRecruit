@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
   InputItem,
   List,
@@ -9,12 +9,12 @@ import {
   NavBar,
   TextareaItem,
   Toast,
-} from "antd-mobile";
-import { Redirect } from "react-router";
+} from 'antd-mobile';
+import { Redirect } from 'react-router';
 
-import { requestUpdateUserInfo } from "../../redux/actions";
+import { requestUpdateUserInfo } from '../../redux/actions';
 
-import ProfileHeads from "Components/ProfileHeads";
+import ProfileHeads from 'Components/ProfileHeads';
 // |参数		|是否必选 |类型     |说明
 // |headPhoto  |Y       |string   |头像名称
 
@@ -24,30 +24,31 @@ import ProfileHeads from "Components/ProfileHeads";
 // |introductions   |N       |string   |介绍
 
 function BossInfo({ updateUserInfo, userType }) {
-  const [headPhoto, setHeadPhoto] = useState("");
+  const [headPhoto, setHeadPhoto] = useState('');
   const [userInfo, setUserInfo] = useState({
-    company: "",
-    position: "",
-    salary: "",
-    description: "",
+    company: '',
+    position: '',
+    salary: '',
+    description: '',
   });
 
   function handleInputChange(stateName, stateValue) {
     setUserInfo((prevState) => ({
-      ...prevState, [stateName]: stateValue,
+      ...prevState,
+      [stateName]: stateValue,
     }));
   }
 
   const onSaveClick = () => {
     //Don't forget to add some checks ahead
     if (!headPhoto) {
-      return Toast.fail("Please select a Photo", 1);
+      return Toast.fail('Please select a Photo', 1);
     }
     // use the props func --- from axios
     updateUserInfo({ headPhoto, ...userInfo });
   };
 
-  if (userType === "Candidate") {
+  if (userType === 'Candidate') {
     return <Redirect to="/candiinfo" />;
   }
 
@@ -56,7 +57,10 @@ function BossInfo({ updateUserInfo, userType }) {
       {/* header */}
       <NavBar type="primary">BOSS INFO</NavBar>
       {/* profile heads */}
-      <ProfileHeads iconSelected={headPhoto} setHeader={(target) => setHeadPhoto(target)} />
+      <ProfileHeads
+        iconSelected={headPhoto}
+        setHeader={(target) => setHeadPhoto(target)}
+      />
       {/* form list */}
       <List>
         <WhiteSpace size="sm" />
@@ -66,7 +70,7 @@ function BossInfo({ updateUserInfo, userType }) {
           name="company"
           type="text"
           placeholder="Please type in company"
-          onChange={(v) => handleInputChange("company", v)}
+          onChange={(v) => handleInputChange('company', v)}
           value={userInfo.company}
         >
           company
@@ -78,7 +82,7 @@ function BossInfo({ updateUserInfo, userType }) {
           name="position"
           type="text"
           placeholder="Please type in position"
-          onChange={(v) => handleInputChange("position", v)}
+          onChange={(v) => handleInputChange('position', v)}
           value={userInfo.position}
         >
           position
@@ -90,7 +94,7 @@ function BossInfo({ updateUserInfo, userType }) {
           name="salary"
           type="text"
           placeholder="Please type in salary"
-          onChange={(v) => handleInputChange("salary", v)}
+          onChange={(v) => handleInputChange('salary', v)}
           value={userInfo.salary}
         >
           salary
@@ -105,7 +109,7 @@ function BossInfo({ updateUserInfo, userType }) {
           rows={3}
           labelNumber={6}
           placeholder="Please type in description"
-          onChange={(v) => handleInputChange("description", v)}
+          onChange={(v) => handleInputChange('description', v)}
           value={userInfo.description}
         />
       </List>
@@ -120,7 +124,7 @@ function BossInfo({ updateUserInfo, userType }) {
 BossInfo.propTypes = {
   userType: PropTypes.string.isRequired,
   updateUserInfo: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
   userType: state.userData.userType,

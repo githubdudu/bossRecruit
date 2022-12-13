@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { List } from "antd-mobile";
+import styled from 'styled-components';
+import { List } from 'antd-mobile';
 
 const InputContainer = styled(List)`
   position: fixed;

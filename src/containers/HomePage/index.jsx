@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { TabBar } from "antd-mobile";
+import { TabBar } from 'antd-mobile';
 
-import Explore from "../ExplorePage";
-import Messages from "../MessagesPage";
-import Personal from "../PersonalPage";
-import StyledContainer from "./StyledContainer";
-import { makeSelectUnreadAll } from "./selectors";
+import Explore from '../ExplorePage';
+import Messages from '../MessagesPage';
+import Personal from '../PersonalPage';
+import StyledContainer from './StyledContainer';
+import { makeSelectUnreadAll } from './selectors';
 
-function Home({messageBadgeNum}) {
-  const [selectedTab, setSelectedTab] = useState("explore");
+function Home({ messageBadgeNum }) {
+  const [selectedTab, setSelectedTab] = useState('explore');
   const list = [
-    { name: "Explore", component: <Explore />, },
-    { name: "Messages", component: <Messages />, badge: messageBadgeNum },
-    { name: "Personal", component: <Personal /> }
+    { name: 'Explore', component: <Explore /> },
+    { name: 'Messages', component: <Messages />, badge: messageBadgeNum },
+    { name: 'Personal', component: <Personal /> },
   ];
   const ItemList = list.map(({ name, component, badge = 0 }) => {
     const lowerCase = name.toLowerCase();
@@ -32,7 +32,8 @@ function Home({messageBadgeNum}) {
         onPress={() => setSelectedTab(lowerCase)}
       >
         {component}
-      </TabBar.Item>);
+      </TabBar.Item>
+    );
   });
 
   return (
@@ -51,7 +52,7 @@ function Home({messageBadgeNum}) {
 
 Home.propTypes = {
   messageBadgeNum: PropTypes.number.isRequired,
-}
+};
 
 const mapStateToProps = createStructuredSelector({
   messageBadgeNum: makeSelectUnreadAll(),

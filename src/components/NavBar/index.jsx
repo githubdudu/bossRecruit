@@ -1,5 +1,5 @@
-import { NavBar } from "antd-mobile";
-import styled from "styled-components";
+import { NavBar } from 'antd-mobile';
+import styled from 'styled-components';
 
 const StyledNavBar = styled(NavBar)`
   position: fixed;

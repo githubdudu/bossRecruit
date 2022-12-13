@@ -6,7 +6,7 @@
 }
 
 /* add a small decoration for input list */
-.am-list-body{
+.am-list-body {
   border-radius: 5px;
   border: 1px solid #ccc;
 }

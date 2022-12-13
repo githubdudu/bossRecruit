@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 import {
   CHANGE_STATE_LOGIN,
   CHANGE_STATE_LOGOUT,
@@ -7,7 +7,7 @@ import {
   GET_USER_LISTS,
   RECEIVE_MSG_LIST,
   RECEIVE_MSG,
-} from "./actions";
+} from './actions';
 
 // const INIT_USER_DATA = {
 //   username: "",
@@ -74,63 +74,67 @@ userData: {
 //   }
 // }
 
-const loginChange = (name) => (state = "", action) => {
-  switch (action.type) {
-    case CHANGE_STATE_LOGIN:
-      return action.userData[name] ?? "";
-    case UPDATE_USER_INFO:
-      return action.userInfo[name] ?? "";
-    case CHANGE_STATE_LOGOUT:
-      return null;
-    case SEND_ERROR:
-    default:
-      return state;
-  }
-};
+const loginChange =
+  (name) =>
+  (state = '', action) => {
+    switch (action.type) {
+      case CHANGE_STATE_LOGIN:
+        return action.userData[name] ?? '';
+      case UPDATE_USER_INFO:
+        return action.userInfo[name] ?? '';
+      case CHANGE_STATE_LOGOUT:
+        return null;
+      case SEND_ERROR:
+      default:
+        return state;
+    }
+  };
 
-function errMsg(state = "", action) {
+function errMsg(state = '', action) {
   switch (action.type) {
     case CHANGE_STATE_LOGIN:
-      return "";
+      return '';
     case CHANGE_STATE_LOGOUT:
-      return action.msg ?? "";
+      return action.msg ?? '';
     case SEND_ERROR:
-      return action.msg ?? "";
+      return action.msg ?? '';
     case UPDATE_USER_INFO:
     default:
       return state;
   }
 }
 
-const updateFiveInfo = (name) => (state = "", action) => {
-  switch (action.type) {
-    case CHANGE_STATE_LOGIN:
-      return action.userData[name] ?? "";
-    case UPDATE_USER_INFO:
-      // ?? 返回第一个 已定义的 值。
-      // console.log(`${name}:`,action.userInfo[name]);
-      return action.userInfo[name] ?? "";
-    case CHANGE_STATE_LOGOUT:
-      return null;
-    case SEND_ERROR:
-    default:
-      return state;
-  }
-};
+const updateFiveInfo =
+  (name) =>
+  (state = '', action) => {
+    switch (action.type) {
+      case CHANGE_STATE_LOGIN:
+        return action.userData[name] ?? '';
+      case UPDATE_USER_INFO:
+        // ?? 返回第一个 已定义的 值。
+        // console.log(`${name}:`,action.userInfo[name]);
+        return action.userInfo[name] ?? '';
+      case CHANGE_STATE_LOGOUT:
+        return null;
+      case SEND_ERROR:
+      default:
+        return state;
+    }
+  };
 
 const userData = combineReducers({
-  username: loginChange("username"),
-  userType: loginChange("userType"),
-  _id: loginChange("_id"),
+  username: loginChange('username'),
+  userType: loginChange('userType'),
+  _id: loginChange('_id'),
   errMsg,
-  headPhoto: updateFiveInfo("headPhoto"),
-  position: updateFiveInfo("position"),
-  description: updateFiveInfo("description"),
-  company: updateFiveInfo("company"),
-  salary: updateFiveInfo("salary"),
+  headPhoto: updateFiveInfo('headPhoto'),
+  position: updateFiveInfo('position'),
+  description: updateFiveInfo('description'),
+  company: updateFiveInfo('company'),
+  salary: updateFiveInfo('salary'),
 });
 
-const userLists = (state = "", action) => {
+const userLists = (state = '', action) => {
   switch (action.type) {
     case GET_USER_LISTS:
       return action.userData.userLists;

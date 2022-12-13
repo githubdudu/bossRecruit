@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const StyledContainer = styled("div")`
+const StyledContainer = styled('div')`
   position: fixed;
   height: 100%;
   width: 100%;

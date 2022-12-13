@@ -1,14 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { List, Grid } from "antd-mobile";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { List, Grid } from 'antd-mobile';
 
 export default function ProfileHeads({ iconSelected = null, setHeader }) {
-
   const headPhotos = [];
   for (let i = 1; i <= 20; i++) {
     let icon = require(`../../assets/heads/头像${i}.png`).default;
     headPhotos.push({
-      text: "头像" + i,
+      text: '头像' + i,
       icon: icon,
     });
   }
@@ -20,11 +19,14 @@ export default function ProfileHeads({ iconSelected = null, setHeader }) {
   };
 
   const listTitle = !iconSelected ? (
-    "Please select one"
+    'Please select one'
   ) : (
     <div>
       Have chose this:
-      <img src={require(`../../assets/heads/${iconSelected}.png`).default} alt="headPhoto" />
+      <img
+        src={require(`../../assets/heads/${iconSelected}.png`).default}
+        alt="headPhoto"
+      />
     </div>
   );
 
@@ -44,4 +46,4 @@ export default function ProfileHeads({ iconSelected = null, setHeader }) {
 ProfileHeads.propTypes = {
   iconSelected: PropTypes.string.isRequired,
   setHeader: PropTypes.func.isRequired,
-}
+};

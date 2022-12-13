@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   InputItem,
@@ -8,54 +8,54 @@ import {
   Button,
   NoticeBar,
   Toast,
-} from "antd-mobile";
-import { connect } from "react-redux";
-import Cookies from "js-cookie";
+} from 'antd-mobile';
+import { connect } from 'react-redux';
+import Cookies from 'js-cookie';
 
-import Logo from "Components/Logo";
-import { requestLogin } from "../../redux/actions";
+import Logo from 'Components/Logo';
+import { requestLogin } from '../../redux/actions';
 
 function Login({ errMsg, history, submitForm }) {
   const [forms, setForms] = useState({
-    username: "",
-    userPW: "",
+    username: '',
+    userPW: '',
   });
   const [errInfo, setErrInfo] = useState(null);
 
   // handle inputs
   function handleInputChange(stateName, stateValue) {
-    setForms(prevState => ({
-      ...prevState, [stateName]: stateValue,
+    setForms((prevState) => ({
+      ...prevState,
+      [stateName]: stateValue,
     }));
   }
 
   // submit the login data
   function login() {
     if (!forms.username) {
-      Toast.fail("Blank username", 1);
-      setErrInfo("Blank username");
+      Toast.fail('Blank username', 1);
+      setErrInfo('Blank username');
     } else if (!forms.userPW) {
-      Toast.fail("Blank password", 1);
-      setErrInfo("Blank password");
+      Toast.fail('Blank password', 1);
+      setErrInfo('Blank password');
     } else {
       setErrInfo(null);
       submitForm(forms); // handle to axios
     }
-  };
+  }
 
   // jump to another route: register
   const redirectToRegister = () => {
-    history.push("/register");
+    history.push('/register');
   };
 
-  if (Cookies.get("userid")) {
-    Toast.success("Login Success!", 2);
-    history.push("/home");
+  if (Cookies.get('userid')) {
+    Toast.success('Login Success!', 2);
+    history.push('/home');
   }
 
   return (
     <div>
-
       {/* use button instead of NavBar */}
       <Button type="primary">BOSS 直 聘</Button>
 
@@ -70,7 +70,7 @@ function Login({ errMsg, history, submitForm }) {
             <InputItem
               name="username"
               placeholder="Please type in name"
-              onChange={(v) => handleInputChange("username", v)}
+              onChange={(v) => handleInputChange('username', v)}
               value={forms.username}
             >
               用户名
@@ -81,7 +81,7 @@ function Login({ errMsg, history, submitForm }) {
               name="userPW"
               type="password"
               placeholder="Please type in password"
-              onChange={(v) => handleInputChange("userPW", v)}
+              onChange={(v) => handleInputChange('userPW', v)}
               value={forms.userPW}
             >
               密码
@@ -90,16 +90,14 @@ function Login({ errMsg, history, submitForm }) {
             {/* if there is an errMsg  */}
             {errMsg && <NoticeBar icon={null}>{errMsg}</NoticeBar>}
             {errInfo && <NoticeBar icon={null}>{errInfo}</NoticeBar>}
-            
+
             <WhiteSpace size="md" />
 
             <Button type="primary" onClick={login}>
               Log In
             </Button>
             <WhiteSpace size="sm" />
-            <Button onClick={redirectToRegister}>
-              Click here to register
-            </Button>
+            <Button onClick={redirectToRegister}>Click here to register</Button>
           </List>
         </WingBlank>
       </div>
@@ -110,7 +108,7 @@ function Login({ errMsg, history, submitForm }) {
 Login.propTypes = {
   errMsg: PropTypes.string,
   submitForm: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
   errMsg: state.userData.errMsg,

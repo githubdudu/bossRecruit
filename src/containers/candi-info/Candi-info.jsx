@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
   InputItem,
   List,
@@ -9,28 +9,28 @@ import {
   NavBar,
   TextareaItem,
   Toast,
-} from "antd-mobile";
-import { Redirect } from "react-router";
+} from 'antd-mobile';
+import { Redirect } from 'react-router';
 
-import { requestUpdateUserInfo } from "../../redux/actions";
+import { requestUpdateUserInfo } from '../../redux/actions';
 
-import ProfileHeads from "Components/ProfileHeads";
+import ProfileHeads from 'Components/ProfileHeads';
 
 function CandiInfo({ updateUserInfo, userType }) {
-  const [headPhoto, setHeadPhoto] = useState("");
-  const [position, setPosition] = useState("");
-  const [description, setDescription] = useState("");
+  const [headPhoto, setHeadPhoto] = useState('');
+  const [position, setPosition] = useState('');
+  const [description, setDescription] = useState('');
 
   const onSaveClick = () => {
     //Don't forget to add some checks ahead
     if (!headPhoto) {
-      return Toast.fail("Please select a Photo", 1);
+      return Toast.fail('Please select a Photo', 1);
     }
     // use the props func --- from axios
     updateUserInfo({ headPhoto, position, description });
   };
 
-  if (userType === "Boss") {
+  if (userType === 'Boss') {
     return <Redirect to="/bossinfo" />;
   }
 
@@ -40,7 +40,10 @@ function CandiInfo({ updateUserInfo, userType }) {
       <NavBar type="primary">CANDIDATE INFO</NavBar>
 
       {/* profile heads */}
-      <ProfileHeads iconSelected={headPhoto} setHeader={(target) => setHeadPhoto(target)} />
+      <ProfileHeads
+        iconSelected={headPhoto}
+        setHeader={(target) => setHeadPhoto(target)}
+      />
 
       {/* form list */}
       <List>
@@ -73,13 +76,12 @@ function CandiInfo({ updateUserInfo, userType }) {
       </Button>
     </div>
   );
-
 }
 
 CandiInfo.propTypes = {
   userType: PropTypes.string.isRequired,
   updateUserInfo: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = (state) => ({
   userType: state.userData.userType,

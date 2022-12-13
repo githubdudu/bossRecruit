@@ -1,12 +1,17 @@
-import React from "react";
+import React from 'react';
 import { createStructuredSelector } from 'reselect';
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { List, Badge } from "antd-mobile";
-import { withRouter } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { List, Badge } from 'antd-mobile';
+import { withRouter } from 'react-router-dom';
 
-import WithNavBar from "Components/WithNavBar";
-import { selectID, selectUsers, makeSelectUnreadEach, makeSelectLastMsg } from './selectors';
+import WithNavBar from 'Components/WithNavBar';
+import {
+  selectID,
+  selectUsers,
+  makeSelectUnreadEach,
+  makeSelectLastMsg,
+} from './selectors';
 
 function MessagesPage({ _id: from, users, unreadEach, lastMsg, history }) {
   if (Object.keys(users).length === 0) {
@@ -33,15 +38,12 @@ function MessagesPage({ _id: from, users, unreadEach, lastMsg, history }) {
         <List.Item.Brief>{username}</List.Item.Brief>
       </List.Item>
     );
-
   });
 
   return (
     <div>
       <WithNavBar title="消息列表">
-        <List>
-          {renderList}
-        </List>
+        <List>{renderList}</List>
       </WithNavBar>
     </div>
   );
@@ -54,17 +56,19 @@ MessagesPage.propTypes = {
     headPhoto: PropTypes.string,
   }),
   unreadEach: PropTypes.objectOf(PropTypes.number),
-  lastMsg: PropTypes.arrayOf(PropTypes.shape({
-    isRead: PropTypes.bool,
-    _id: PropTypes.string,
-    from: PropTypes.string,
-    to: PropTypes.string,
-    content: PropTypes.string,
-    chat_id: PropTypes.string,
-    created_time: PropTypes.number,
-  })),
+  lastMsg: PropTypes.arrayOf(
+    PropTypes.shape({
+      isRead: PropTypes.bool,
+      _id: PropTypes.string,
+      from: PropTypes.string,
+      to: PropTypes.string,
+      content: PropTypes.string,
+      chat_id: PropTypes.string,
+      created_time: PropTypes.number,
+    }),
+  ),
   history: PropTypes.object.isRequired,
-}
+};
 
 const mapStateToProps = createStructuredSelector({
   _id: selectID,
@@ -73,6 +77,4 @@ const mapStateToProps = createStructuredSelector({
   lastMsg: makeSelectLastMsg(),
 });
 
-export default withRouter(
-  connect(mapStateToProps, null)(MessagesPage)
-);
+export default withRouter(connect(mapStateToProps, null)(MessagesPage));

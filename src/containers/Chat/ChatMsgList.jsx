@@ -1,21 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import List from "./StyledList";
-import MessageReceived from "./MessageReceived";
-import MessageSent from "./MessageSent";
+import List from './StyledList';
+import MessageReceived from './MessageReceived';
+import MessageSent from './MessageSent';
 
-function ChatMsgList({ chatMsgs, from, talkToPhoto}) {
+function ChatMsgList({ chatMsgs, from, talkToPhoto }) {
   const renderChatMsgList = chatMsgs.map((m) => {
     // judge who to who
     if (from === m.from) {
       // sent by myself
-      return (
-        <MessageSent
-          key={m._id}
-          content={m.content}
-        />
-      );
+      return <MessageSent key={m._id} content={m.content} />;
     } else {
       //sent by other
       return (
@@ -27,11 +22,7 @@ function ChatMsgList({ chatMsgs, from, talkToPhoto}) {
       );
     }
   });
-  return (
-    <List>
-      {renderChatMsgList}
-    </List>
-  )
+  return <List>{renderChatMsgList}</List>;
 }
 
 ChatMsgList.propTypes = {
@@ -42,10 +33,11 @@ ChatMsgList.propTypes = {
       from: PropTypes.string,
       to: PropTypes.string,
       content: PropTypes.string,
-    })),
+    }),
+  ),
   from: PropTypes.string,
   to: PropTypes.string,
   talkToPhoto: PropTypes.string,
-}
+};
 
 export default ChatMsgList;

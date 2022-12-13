@@ -1,19 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { NavBar, Result, List, WhiteSpace } from "antd-mobile";
-import HeadPhoto from "Components/HeadPhoto";
-import LogOutButton from "./LogOutButton";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { NavBar, Result, List, WhiteSpace } from 'antd-mobile';
+import HeadPhoto from 'Components/HeadPhoto';
+import LogOutButton from './LogOutButton';
 
-
-function Personal({ headPhoto,
+function Personal({
+  headPhoto,
   username,
   userType,
   company,
   position,
   description,
-  salary }) {
-
+  salary,
+}) {
   return (
     <div>
       <NavBar type="primary">用户中心</NavBar>
@@ -24,18 +24,14 @@ function Personal({ headPhoto,
         message={company}
       />
 
-      <List renderHeader={() => "相关信息"} >
+      <List renderHeader={() => '相关信息'}>
         <List.Item multipleLine>
-          {userType && (
-            <List.Item.Brief>用户类型: {userType} </List.Item.Brief>
-          )}
-          {position && (
-            <List.Item.Brief>职位: {position} </List.Item.Brief>)}
+          {userType && <List.Item.Brief>用户类型: {userType} </List.Item.Brief>}
+          {position && <List.Item.Brief>职位: {position} </List.Item.Brief>}
           {description && (
             <List.Item.Brief>简介: {description} </List.Item.Brief>
           )}
-          {salary && (
-            <List.Item.Brief>薪资: {salary} </List.Item.Brief>)}
+          {salary && <List.Item.Brief>薪资: {salary} </List.Item.Brief>}
         </List.Item>
       </List>
 
@@ -55,7 +51,7 @@ LogOutButton.propTypes = {
   position: PropTypes.string,
   description: PropTypes.string,
   salary: PropTypes.string,
-}
+};
 
 const mapStateToProps = (state) => ({
   headPhoto: state.userData.headPhoto,

@@ -14,9 +14,10 @@
 4. Remove redirectUrl in state.
 5. Remove onFormError and related action(sync_readMessage), do not send component error state to Redux state.
 6. Update all npm libraries.
+7. Add Prettier and formatted the files.
 
    TODO: Split the redux file
    TODO: Use Redux Saga
-   TODO: add eslint config
+   
    TODO: add Unit Text
    TODO: Add mockserver Nock

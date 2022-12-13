@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const LogoContainer = styled("div")`
+const LogoContainer = styled('div')`
   text-align: center;
 `;
 

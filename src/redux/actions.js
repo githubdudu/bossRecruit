@@ -12,7 +12,7 @@ userData: {
     errMsg:""  // error message
    }
 } */
-import io from "socket.io-client";
+import io from 'socket.io-client';
 
 import {
   reqRegister,
@@ -22,36 +22,34 @@ import {
   getUserList,
   ajax_getMessageList,
   ajax_readMessage,
-} from "../api";
+} from '../api';
 
-export const CHANGE_STATE_LOGIN = "CHANGE_STATE_LOGIN"; // set username & userType
-export const CHANGE_STATE_LOGOUT = "CHANGE_STATE_LOGOUT"; //  clear username & userType
-export const SEND_ERROR = "SEND_ERROR";
-export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
-export const GET_USER_LISTS = "GET_USER_LISTS"; // sync action
-export const RECEIVE_MSG_LIST = "RECEIVE_MSG_LIST";
-export const RECEIVE_MSG = "RECEIVE_MSG";
+export const CHANGE_STATE_LOGIN = 'CHANGE_STATE_LOGIN'; // set username & userType
+export const CHANGE_STATE_LOGOUT = 'CHANGE_STATE_LOGOUT'; //  clear username & userType
+export const SEND_ERROR = 'SEND_ERROR';
+export const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
+export const GET_USER_LISTS = 'GET_USER_LISTS'; // sync action
+export const RECEIVE_MSG_LIST = 'RECEIVE_MSG_LIST';
+export const RECEIVE_MSG = 'RECEIVE_MSG';
 
 // used in reqMessageList
-function initIO(dispatch,userid) {
-  console.log("io.socket",!io.socket);
+function initIO(dispatch, userid) {
+  console.log('io.socket', !io.socket);
   if (!io.socket) {
-    io.socket = io("ws://localhost:4000");
-    console.log("io.socket",!io.socket);
+    io.socket = io('ws://localhost:4000');
+    console.log('io.socket', !io.socket);
     // chatMsg : just one list of chat
-    io.socket.on("receiveMsg", function (chatMsg) {
-      console.log("Web 接收 from server:", chatMsg);
+    io.socket.on('receiveMsg', function (chatMsg) {
+      console.log('Web 接收 from server:', chatMsg);
       // chatMsgs are from all the users, we must filter it
-      console.log({userid,"from":chatMsg.from,"to":chatMsg.to});
-      if(chatMsg.from === userid ||chatMsg.to === userid){
-        console.log("!!!!");
+      console.log({ userid, from: chatMsg.from, to: chatMsg.to });
+      if (chatMsg.from === userid || chatMsg.to === userid) {
+        console.log('!!!!');
       }
-      dispatch(receiveMsg(chatMsg))
+      dispatch(receiveMsg(chatMsg));
     });
-
   }
 }
-
 
 // sync actions
 const changeStateLogin = (userData) => {
@@ -144,7 +142,7 @@ export const requestLogin = (state) => (dispatch) => {
       // 0: success
       let userData = responseMsg.data.data;
       dispatch(changeStateLogin(userData));
-      console.log("requestLogin");
+      console.log('requestLogin');
 
       // reqMessageList(dispatch);
       dispatch(reqMessageList(userData._id));
@@ -164,7 +162,7 @@ export const requestUpdateUserInfo = (state) => (dispatch) => {
       // 0: success
       let userInfo = responseMsg.data.data;
       dispatch(updateUserInfo(userInfo));
-      console.log("requestUpdateUserInfo");
+      console.log('requestUpdateUserInfo');
     }
   });
 };
@@ -181,7 +179,7 @@ export const fetchUserData = (state) => (dispatch) => {
       // 0: success
       let userData = responseMsg.data.data;
       dispatch(changeStateLogin(userData));
-      console.log("fetchUserData");
+      console.log('fetchUserData');
       dispatch(reqMessageList(userData._id));
 
       // reqMessageList(dispatch);
@@ -205,10 +203,12 @@ export const asyncGetUserLists = (userType) => (dispatch) => {
 };
 
 //
-export const sendMsg = ({ from, to, content }) => (dispatch) => {
-  console.log("client发送", { from, to, content });
-  io.socket.emit("sendMsg", { from, to, content });
-};
+export const sendMsg =
+  ({ from, to, content }) =>
+  (dispatch) => {
+    console.log('client发送', { from, to, content });
+    io.socket.emit('sendMsg', { from, to, content });
+  };
 
 // 获取消息列表  async
 // get MessagesList
@@ -236,17 +236,19 @@ const reqMessageList = (userid) => (dispatch) => {
 // }
 
 // 改变=>已读
-export const reqReadMessage = ({from,to}) => (dispatch) => {
-  return ajax_readMessage(from).then((responseMsg) => {
-    if (responseMsg.data.code === 1) {
-      // 1: fail
-      let errMsg = responseMsg.data.msg;
-      console.log("error_readMessage", {from, to});
+export const reqReadMessage =
+  ({ from, to }) =>
+  (dispatch) => {
+    return ajax_readMessage(from).then((responseMsg) => {
+      if (responseMsg.data.code === 1) {
+        // 1: fail
+        let errMsg = responseMsg.data.msg;
+        console.log('error_readMessage', { from, to });
 
-      dispatch(sendError(errMsg))
-    } else {
-      // 0: success
-      console.log("sync_readMessage", {from, to});
-    }
-  });
-};
+        dispatch(sendError(errMsg));
+      } else {
+        // 0: success
+        console.log('sync_readMessage', { from, to });
+      }
+    });
+  };
