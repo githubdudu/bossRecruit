@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   InputItem,
   List,
   WhiteSpace,
   Button,
-  // NoticeBar,
   NavBar,
   TextareaItem,
   Toast,
@@ -14,110 +14,75 @@ import { Redirect } from "react-router";
 
 import { requestUpdateUserInfo } from "../../redux/actions";
 
-import ProfileHeads from "../../components/profile-heads/Profile-heads";
+import ProfileHeads from "Components/ProfileHeads";
 
-class CandiInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      headPhoto: "", //ProfileHeads
-      position: "",
-      description: "",
-    };
+function CandiInfo({ updateUserInfo, userType }) {
+  const [headPhoto, setHeadPhoto] = useState("");
+  const [position, setPosition] = useState("");
+  const [description, setDescription] = useState("");
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
-
-  handleHeaderClick = (headPhoto) => {
-    this.setState({
-      headPhoto,
-    });
-  };
-
-  handleInputChange(stateName, stateValue) {
-    if (stateValue.target) {
-      let isBossOptions = stateValue.target.value === "Boss";
-      stateValue = stateValue.target.checked && isBossOptions;
-    }
-
-    this.setState({
-      [stateName]: stateValue,
-    });
-  }
-
-  updateUserInfo = () => {
+  const onSaveClick = () => {
     //Don't forget to add some checks ahead
-    if (!this.state.headPhoto) {
+    if (!headPhoto) {
       return Toast.fail("Please select a Photo", 1);
-      //   return (this.errMsg = "Please select a Photo");
     }
-
-    // do ajex GET
-    console.log("save!", JSON.stringify(this.state));
-
     // use the props func --- from axios
-    this.props.updateUserInfo(this.state);
-    // this.props.informMainSubmitted();
+    updateUserInfo({ headPhoto, position, description });
   };
 
-  render() {
-    if (this.props.userType === "Boss") {
-      console.log("/candiinfo to /bossinfo");
-      return <Redirect to="/bossinfo" />;
-    }
-
-    if (this.props.redirectUrl && this.props.redirectUrl === "/home") {
-      console.log("re to /home");
-      return <Redirect to="/home" />;
-    }
-    console.log(" re render candiinfo")
-    return (
-      <div>
-        {/* header */}
-        <NavBar type="primary">CANDIDATE INFO</NavBar>
-
-        {/* profile heads */}
-        <ProfileHeads setHeader={this.handleHeaderClick} />
-
-        {/* form list */}
-        <List>
-          <WhiteSpace size="sm" />
-
-          {/* position */}
-          <InputItem
-            name="position"
-            type="text"
-            placeholder="Please type in position"
-            onChange={(v) => this.handleInputChange("position", v)}
-            value={this.state.position}
-          >
-            求职岗位
-          </InputItem>
-          <WhiteSpace size="sm" />
-
-          {/* description */}
-          <TextareaItem
-            title="个人介绍"
-            name="description"
-            count={100}
-            rows={3}
-            labelNumber={5}
-            placeholder="Please type in description"
-            onChange={(v) => this.handleInputChange("description", v)}
-            value={this.state.description}
-          />
-        </List>
-        <Button type="primary" onClick={this.updateUserInfo}>
-          Save ALL
-        </Button>
-      </div>
-    );
+  if (userType === "Boss") {
+    return <Redirect to="/bossinfo" />;
   }
+
+  return (
+    <div>
+      {/* header */}
+      <NavBar type="primary">CANDIDATE INFO</NavBar>
+
+      {/* profile heads */}
+      <ProfileHeads iconSelected={headPhoto} setHeader={(target) => setHeadPhoto(target)} />
+
+      {/* form list */}
+      <List>
+        <WhiteSpace size="sm" />
+
+        <InputItem
+          name="position"
+          type="text"
+          placeholder="Please type in position"
+          onChange={(v) => setPosition(v)}
+          value={position}
+        >
+          求职岗位
+        </InputItem>
+        <WhiteSpace size="sm" />
+
+        <TextareaItem
+          title="个人介绍"
+          name="description"
+          count={100}
+          rows={3}
+          labelNumber={5}
+          placeholder="Please type in description"
+          onChange={(v) => setDescription(v)}
+          value={description}
+        />
+      </List>
+      <Button type="primary" onClick={onSaveClick}>
+        Save ALL
+      </Button>
+    </div>
+  );
+
+}
+
+CandiInfo.propTypes = {
+  userType: PropTypes.string.isRequired,
+  updateUserInfo: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   userType: state.userData.userType,
-  redirectUrl: state.userData.redirectUrl,
 });
 
 const mapDispatchToProps = { updateUserInfo: requestUpdateUserInfo };

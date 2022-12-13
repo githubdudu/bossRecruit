@@ -7,3 +7,15 @@
 
 ### run by
     npm start
+
+1. Add Webpack alias. 
+2. Add Reselect.
+3. Add AuthRoute. Redesigned route.
+4. Remove redirectUrl in state.
+   TODO: remove errInfo, errMsg, onFormError, use page state instead for Login and Register
+
+   TODO: Split the redux file
+   TODO: Use Redux Saga
+   TODO: add eslint
+   TODO: add Unit Text
+   TODO: Add mockserver Nock
