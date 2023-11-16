@@ -16,8 +16,9 @@
 6. Update all npm libraries.
 7. Add Prettier and formatted the files.
 
+   TODO: Media query
    TODO: Split the redux file
    TODO: Use Redux Saga
-   
+
    TODO: add Unit Text
    TODO: Add mockserver Nock
