@@ -10,6 +10,7 @@ userData: {
     username:""  // info after login   String
     userType:""  // info after login  String Boss or Candidate
     errMsg:""  // error message
+    redirectUrl: ""  // after login, set a url; when not null, to another page
    }
 } */
 import io from "socket.io-client";
@@ -254,7 +255,7 @@ export const reqReadMessage = ({from,to}) => (dispatch) => {
     } else {
       // 0: success
       console.log("sync_readMessage", {from, to});
-      // dispatch(sync_readMessage({from, to}));
+      dispatch(sync_readMessage({from, to}));
     }
   });
 };
